@@ -8,9 +8,16 @@ import { Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import configureStore from './store';
 import { RootNavigator } from './navigation/';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
-const store = configureStore(applyMiddleware(thunk));
+const store = configureStore(
+    composeWithDevTools(
+        applyMiddleware(
+            thunk
+        )
+    )
+);
 
 
 export default class App extends Component {
