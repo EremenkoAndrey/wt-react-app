@@ -23,7 +23,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "whotrades.com"
+    },
+    "android": {
+      "package": "whotrades.com"
     }
   }
 }
