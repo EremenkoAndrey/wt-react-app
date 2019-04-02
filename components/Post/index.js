@@ -7,14 +7,19 @@ import UserCard from './../UserCard/';
 function Post({ post }) {
     return (
         <View>
-            <Text>Это пост</Text>
             <UserCard id={post.author.id} />
+            <Text>Это пост</Text>
         </View>
     );
 }
 
 Post.propTypes = {
-    id: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    post: PropTypes.shape({
+        author: PropTypes.shape({
+            id: PropTypes.string
+        })
+    }).isRequired
 };
 
 Post.defaultProps = {

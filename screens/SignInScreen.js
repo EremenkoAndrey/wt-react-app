@@ -1,15 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import { connect } from 'react-redux';
 import { Container, Content, Form, Item, Input, Label, Button, Text, Toast } from 'native-base';
 import api from './../services/api';
 import token from './../services/token';
 import Link from "./../components/Link";
-import About from "./../components/About";
-import { SHOW_ABOUT } from './../actions/app';
 
 
-class SignInScreen extends React.Component {
+export default class SignInScreen extends React.Component {
     static navigationOptions = {
         title: 'WhoTrades',
     };
@@ -62,8 +59,11 @@ class SignInScreen extends React.Component {
         this.props.navigation.navigate('SignUp')
     };
 
+    _showAbout = () => {
+        this.props.navigation.navigate('About', { transition: 'vertical' })
+    };
+
     render() {
-        const { showAbout } = this.props;
         return (
             <Container>
                 <Content>
@@ -114,7 +114,7 @@ class SignInScreen extends React.Component {
                         </View>
                         <View>
                             <Button
-                                onPress={showAbout}
+                                onPress={this._showAbout}
                                 transparent
                             >
                                 <Text>About us</Text>
@@ -122,15 +122,7 @@ class SignInScreen extends React.Component {
                         </View>
                     </View>
                 </Content>
-                <About />
             </Container>
         );
     }
 }
-
-
-const mapDispatchToProps = dispatch => ({
-    showAbout: () => dispatch(SHOW_ABOUT())
-});
-
-export default connect(null, mapDispatchToProps)(SignInScreen);

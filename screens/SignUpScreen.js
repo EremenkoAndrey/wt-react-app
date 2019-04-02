@@ -27,6 +27,10 @@ export default class SignUpScreen extends React.Component {
         this.props.navigation.navigate('SignIn')
     };
 
+    _showAbout = () => {
+        this.props.navigation.navigate('About', { transition: 'vertical' })
+    };
+
     render() {
         return (
             <Container>
@@ -81,7 +85,7 @@ export default class SignUpScreen extends React.Component {
                         </View>
                         <View>
                             <Button
-                                onPress={this._signInAsync}
+                                onPress={this._showAbout}
                                 transparent
                             >
                                 <Text>About us</Text>

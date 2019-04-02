@@ -7,8 +7,8 @@ import UserCard from './../UserCard/';
 function Comment({ comment }) {
     return (
         <View>
-            <Text>Это комментарий</Text>
             <UserCard id={comment.author.id} />
+            <Text>Это комментарий</Text>
         </View>
     );
 }
