@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ActivityIndicator, View } from 'react-native';
-import { Container, Content, Button } from 'native-base';
+import { Container, Content, Button, Text } from 'native-base';
 import token from './../services/token';
 import Feed from './../components/Feed';
 import { GET_INIT_FEED_DATA } from "../actions/feed";
@@ -9,7 +9,7 @@ import { GET_INIT_FEED_DATA } from "../actions/feed";
 
 class HomeScreen extends React.Component {
     static navigationOptions = {
-        title: 'Welcome to the app!',
+        title: 'Welcome to the app!!!',
     };
 
     componentDidMount() {
@@ -31,8 +31,8 @@ class HomeScreen extends React.Component {
         return (
             <Container>
                 <Content>
-                    <Button title="Выйти из приложения" onPress={this._signOutAsync} />
                     <Feed items={feedList} />
+                    <Button title="Выйти из приложения" onPress={this._signOutAsync}><Text>Logout</Text></Button>
                 </Content>
             </Container>
         );

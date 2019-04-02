@@ -19,8 +19,8 @@ class SignInScreen extends React.Component {
         this.loading = false;
         this.state = {
             error: false,
-            username: 'dz+1@whotrades.org',
-            password: 'whotrades'
+            username: 'ae@whotrades.org',
+            password: ''
         }
     }
 

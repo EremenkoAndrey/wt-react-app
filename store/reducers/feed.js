@@ -8,16 +8,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        // case 'GET_INIT_FEED_DATA':
-        //     return {
-        //         ...state,
-        //         showAbout: true
-        //     };
-        // case 'CLOSE_ABOUT':
-        //     return {
-        //         ...state,
-        //         showAbout: false
-        //     };
+        case 'FETCH_FEED_DATA_SUCCESSFUL':
+            const { ids, boundary, boundaryRecordId } = action.payload;
+            return {
+                ...state,
+                list: [...state.list, ...ids],
+                boundary,
+                boundaryRecordId
+            };
         default:
             return state
     }

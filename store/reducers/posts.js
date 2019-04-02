@@ -1,6 +1,6 @@
 export default (state = {}, action) => {
     switch (action.type) {
-        case 'ADD_USERS':
+        case 'ADD_POSTS':
             return {
                 ...state,
                 ...action.payload

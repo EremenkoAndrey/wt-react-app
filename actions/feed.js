@@ -1,5 +1,10 @@
 import api from './../services/api';
+import normalize from './../utils/normalize';
 import { FETCH_USER } from './../actions/user';
+import { ADD_ACTIVITIES } from './activity';
+import { ADD_POSTS } from './posts';
+import { ADD_USERS } from './users';
+import { ADD_COMMENTS } from './comments';
 import ERROR_HANDLER from "./errors";
 
 export function GET_INIT_FEED_DATA() {
@@ -31,9 +36,33 @@ function FETCH_INIT_FEED_DATA() {
 
         api.getUserFeed(params)
             .then((res) => {
-                console.log(res)
+                dispatch(FETCH_FEED_DATA_SUCCESSFUL(res))
             })
             .catch(err => dispatch(ERROR_HANDLER(err)));
         return dispatch({ type: 'FETCH_INIT_FEED_DATA' })
+    };
+}
+
+function FETCH_FEED_DATA_SUCCESSFUL(res) {
+    return (dispatch) => {
+        const { boundary, boundaryRecordId, records } = res;
+        const ids = records
+            .map(record => ({id: `${record.id}`}))
+            .filter(({ id }) => !!id);
+
+        const { activity, post: posts, user: users, comment: comments } = normalize(records);
+        if(activity){
+            dispatch(ADD_ACTIVITIES(activity));
+        }
+        if(posts){
+            dispatch(ADD_POSTS(posts));
+        }
+        if(users){
+            dispatch(ADD_USERS(users));
+        }
+        if(comments){
+            dispatch(ADD_COMMENTS(comments));
+        }
+        return dispatch({ type: 'FETCH_FEED_DATA_SUCCESSFUL', payload: { boundary, boundaryRecordId, ids } })
     };
 }

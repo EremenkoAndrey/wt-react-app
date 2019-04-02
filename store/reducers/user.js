@@ -7,13 +7,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'FETCH_USER_SUCCESSFUL':
+        case 'ADD_USER_SETTINGS':
             return {
-                ...state,
                 id: action.payload.id,
                 settings: {
                     ...state.settings,
-                    lang: action.payload.lcid
+                    ...action.payload.settings
                 }
             };
         default:
