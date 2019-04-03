@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, Text } from 'react-native';
-import FeedCard from './../FeedCard';
+import { FlatList } from 'react-native';
+import Activity from '../Activity';
 
 function Feed({ items }) {
     return (
         <FlatList
             data={items}
             keyExtractor={item => item.id}
-            renderItem={({item}) => <FeedCard id={item.id} />}
+            renderItem={({ item }) => <Activity id={item.id} />}
         />
     );
 }

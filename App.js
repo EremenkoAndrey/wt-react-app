@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StatusBar, ActivityIndicator, View } from 'react-native';
-import { Root } from "native-base";
+import { Root } from 'native-base';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
