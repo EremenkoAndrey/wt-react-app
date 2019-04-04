@@ -12,8 +12,6 @@ export default class WTWebView extends React.Component {
     }
 
     _onNavigationChange = (event) => {
-        console.log(event)
-
         if (event.title) {
             const htmlHeight = parseInt(event.title, 10) || 0;
             this.setState({ height: htmlHeight });
@@ -33,7 +31,7 @@ export default class WTWebView extends React.Component {
             <WebView
                 {...this.props}
                 source={{ html: this.content }}
-                style={{ height, flex: 1 }}
+                style={{ height }}
                 onNavigationStateChange={this._onNavigationChange}
             />
         );

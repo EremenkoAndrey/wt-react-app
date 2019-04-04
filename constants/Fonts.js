@@ -1,5 +1,5 @@
 export default {
     baseFontFamily: 'Roboto',
     baseFontSize: 16,
-    baselineHeight: 1.4
+    baselineHeight: 16 * 1.4
 };

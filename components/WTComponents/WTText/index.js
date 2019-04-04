@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 import styles from './slyle';
 
-export default function WTText({ children, style }) {
+export default function WTText({ children, style, ...props }) {
     const { textStyle } = styles;
     return (
-        <Text style={[textStyle, style]}>{children}</Text>
+        <Text {...props} style={[textStyle, style]}>{children}</Text>
     );
 }
 
