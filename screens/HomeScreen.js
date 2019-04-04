@@ -8,9 +8,21 @@ import Feed from '../components/Feed';
 import { FETCH_USER } from '../actions/user';
 
 class HomeScreen extends React.Component {
-    static navigationOptions = {
-        title: 'Welcome to the app!!!'
-    };
+    static navigationOptions = ({ navigation }) => ({
+        headerRight:(
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+                <Button
+                    title="Выйти из приложения"
+                    onPress={async () => {
+                        await token.clear();
+                        navigation.navigate('Auth');
+                    }}
+                >
+                    <Text>Logout</Text>
+                </Button>
+            </View>
+        )
+    });
 
     componentDidMount() {
         const { userId, getUser } = this.props;
@@ -18,12 +30,6 @@ class HomeScreen extends React.Component {
             getUser();
         }
     }
-
-    _signOutAsync = async () => {
-        const { navigation } = this.props;
-        await token.clear();
-        navigation.navigate('Auth');
-    };
 
     render() {
         const { userId } = this.props;
@@ -36,7 +42,6 @@ class HomeScreen extends React.Component {
         }
         return (
             <Container>
-                <Button title="Выйти из приложения" onPress={this._signOutAsync}><Text>Logout</Text></Button>
                 <Feed />
             </Container>
         );

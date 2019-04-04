@@ -1,14 +1,16 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Container, Content, Form, Item, Input, Label, Button, Text, Toast } from 'native-base';
-import api from './../services/api';
-import token from './../services/token';
-import Link from "./../components/Link";
+import {
+    Container, Content, Form, Item, Input, Label, Button, Text, Toast
+} from 'native-base';
+import api from '../services/api';
+import token from '../services/token';
+import Link from '../components/Link';
 
 
 export default class SignInScreen extends React.Component {
     static navigationOptions = {
-        title: 'WhoTrades',
+        header: null
     };
 
     constructor() {
@@ -65,8 +67,8 @@ export default class SignInScreen extends React.Component {
 
     render() {
         return (
-            <Container>
-                <Content>
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch' }}>
+                <View>
                     <Form>
                         <Item floatingLabel>
                             <Label>Username</Label>
@@ -84,45 +86,45 @@ export default class SignInScreen extends React.Component {
                             />
                         </Item>
                     </Form>
+                </View>
 
-                    <View style={{ marginTop: 20, marginLeft: 10, marginRight: 10 }}>
-                        <Text style={{ textAlign: 'center' }}>
-                            by sign in you agree to our
-                            <Link to={'https://whotrades.com/terms'}> terms and conditions </Link>
-                            and
-                            <Link to={'https://whotrades.com/privacy-policy'}> privacy policy</Link>
-                        </Text>
-                    </View>
+                <View style={{ paddingTop: 20, paddingLeft: 10, paddingRight: 10 }}>
+                    <Text style={{ textAlign: 'center' }}>
+                        by sign in you agree to our
+                        <Link to={'https://whotrades.com/terms'}> terms and conditions </Link>
+                        and
+                        <Link to={'https://whotrades.com/privacy-policy'}> privacy policy</Link>
+                    </Text>
+                </View>
 
-                    <View style={{ marginTop: 20 }}>
+                <View style={{ paddingTop: 20 }}>
+                    <Button
+                        onPress={this._signInAsync}
+                        block
+                    >
+                        <Text>Sign in</Text>
+                    </Button>
+                </View>
+
+                <View style={{ paddingTop: 25, alignItems: 'center' }}>
+                    <View>
                         <Button
-                            onPress={this._signInAsync}
-                            block
+                            onPress={this._showSignUpScreen}
+                            transparent
                         >
-                            <Text>Sign in</Text>
+                            <Text>Sign up</Text>
                         </Button>
                     </View>
-
-                    <View style={{ marginTop: 25, flex: 1, alignItems: 'center' }}>
-                        <View>
-                            <Button
-                                onPress={this._showSignUpScreen}
-                                transparent
-                            >
-                                <Text>Sign up</Text>
-                            </Button>
-                        </View>
-                        <View>
-                            <Button
-                                onPress={this._showAbout}
-                                transparent
-                            >
-                                <Text>About us</Text>
-                            </Button>
-                        </View>
+                    <View>
+                        <Button
+                            onPress={this._showAbout}
+                            transparent
+                        >
+                            <Text>About us</Text>
+                        </Button>
                     </View>
-                </Content>
-            </Container>
+                </View>
+            </View>
         );
     }
 }
