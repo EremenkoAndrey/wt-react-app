@@ -1,26 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import { FlatList, ActivityIndicator, View } from 'react-native';
 import Activity from '../Activity';
+import { FETCH_FEED } from '../../actions/feed';
 
-function Feed({ items }) {
-    return (
-        <FlatList
-            data={items}
-            keyExtractor={item => item.id}
-            renderItem={({ item }) => <Activity id={item.id} />}
-        />
-    );
+const Spinner = connect(state => ({
+    loading: state.feed.loading
+}))(({ loading }) => (loading ? <ActivityIndicator /> : null));
+
+class Feed extends React.Component {
+    componentDidMount() {
+        const { feedList, getInitFeedData } = this.props;
+        if (!feedList.length) {
+            getInitFeedData();
+        }
+    }
+
+    render() {
+        const { feedList, getInitFeedData } = this.props;
+        const viewStyles = feedList.length ? { flex: 1, alignItems: 'center', justifyContent: 'center' } : {};
+
+        return (
+            <View style={viewStyles}>
+                {feedList.length ? (
+                    <FlatList
+                        data={feedList}
+                        keyExtractor={item => item.id}
+                        renderItem={({ item }) => <Activity id={item.id} />}
+                        onEndReached={getInitFeedData}
+                        onEndReachedThreshold={1}
+                    />
+                ) : null}
+                <Spinner />
+            </View>
+        );
+    }
 }
 
 Feed.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
+    feedList: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string
-    }))
+    })).isRequired,
+    getInitFeedData: PropTypes.func.isRequired
 };
 
-Feed.defaultProps = {
-    items: []
-};
+const mapStateToProps = state => ({
+    feedList: state.feed.list
+});
 
-export default Feed;
+
+const mapDispatchToProps = dispatch => ({
+    getInitFeedData: () => dispatch(FETCH_FEED())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

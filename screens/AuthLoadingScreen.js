@@ -1,16 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ActivityIndicator, View } from 'react-native';
-import token from './../services/token';
+import token from '../services/token';
+
 
 
 export default class AuthLoadingScreen extends React.Component {
-    componentDidMount(){
+    componentDidMount() {
         this._bootstrapAsync();
     }
 
     _bootstrapAsync = async () => {
+        const { navigation } = this.props;
         const userToken = await token.get();
-        this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+        navigation.navigate(userToken ? 'App' : 'Auth');
     };
 
     render() {
@@ -21,3 +24,9 @@ export default class AuthLoadingScreen extends React.Component {
         );
     }
 }
+
+ActivityIndicator.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func
+    })
+};

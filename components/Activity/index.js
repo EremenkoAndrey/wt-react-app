@@ -7,6 +7,7 @@ import Comment from '../Comment';
 import ActivityReason from '../ActivityReason';
 import ActivityTitle from '../ActivityTitle';
 import ActivityFooter from '../ActivityFooter';
+import { Text } from '../WTComponents';
 
 function Activity({ activity }) {
     const renderContent = (id, type) => {
@@ -16,8 +17,7 @@ function Activity({ activity }) {
         case 'comment':
             return <Comment id={id} />;
         default:
-            console.error('Тип контента не найден!', type);
-            return null;
+            return <Text>{`Неизвестный тип контента: ${type}`}</Text>;
         }
     };
 

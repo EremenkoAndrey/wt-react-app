@@ -3,20 +3,31 @@ const initialState = {
     boundary: null,
     boundaryRecordId: null,
     enableRecommendations: false,
-    orderBy: 'rank'
+    orderBy: 'rank',
+    loading: false,
+    stopLoad: false
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'FETCH_FEED_DATA_SUCCESSFUL':
-            const { ids, boundary, boundaryRecordId } = action.payload;
-            return {
-                ...state,
-                list: [...state.list, ...ids],
-                boundary,
-                boundaryRecordId
-            };
-        default:
-            return state
+    case 'FETCH_FEED':
+        if (state.stopLoad) {
+            return state;
+        }
+        return {
+            ...state,
+            loading: true
+        };
+    case 'FETCH_FEED_SUCCESSFUL':
+        return {
+            ...state,
+            list: [...state.list, ...action.payload.ids],
+            boundary: action.payload.boundary,
+            boundaryRecordId: action.payload.boundaryRecordId,
+            loading: false,
+            stopLoad: action.payload.ids.length === 0
+        };
+    default:
+        return state;
     }
-}
+};
