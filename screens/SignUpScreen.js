@@ -1,22 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { Container, Content, Form, Item, Input, Label, Button, Text } from 'native-base';
-import Link from "./../components/Link";
+import {
+    Form, Item, Input, Label, Button, Text
+} from 'native-base';
+import Link from '../components/Link';
 
 export default class SignUpScreen extends React.Component {
-    static navigationOptions = {
-        title: 'WhoTrades Sign Up',
-    };
-
     constructor() {
         super();
         this.loading = false;
         this.state = {
-            error: false,
             username: '',
             password: '',
             email: ''
-        }
+        };
     }
 
     _signUpAsync = async () => {
@@ -24,76 +22,92 @@ export default class SignUpScreen extends React.Component {
     };
 
     _showSignInScreen = () => {
-        this.props.navigation.navigate('SignIn')
+        const { navigation } = this.props;
+        navigation.navigate('SignIn');
     };
 
     _showAbout = () => {
-        this.props.navigation.navigate('About', { transition: 'vertical' })
+        const { navigation } = this.props;
+        navigation.navigate('About');
     };
 
     render() {
+        const { password, username, email } = this.state;
         return (
-            <Container>
-                <Content>
+            <View
+                style={{
+                    flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch'
+                }}
+            >
+                <View>
                     <Form>
                         <Item floatingLabel>
                             <Label>Email</Label>
                             <Input
-                                onChangeText={email => this.setState({ email })}
+                                value={username}
+                                onChangeText={value => this.setState({ email: value })}
                             />
                         </Item>
                         <Item floatingLabel>
                             <Label>Username</Label>
                             <Input
-                                onChangeText={username => this.setState({ username })}
+                                value={password}
+                                onChangeText={value => this.setState({ username: value })}
                             />
                         </Item>
                         <Item floatingLabel last>
                             <Label>Password</Label>
                             <Input
-                                onChangeText={password => this.setState({ password })}
+                                value={email}
+                                onChangeText={value => this.setState({ password: value })}
                             />
                         </Item>
                     </Form>
+                </View>
 
-                    <View style={{ marginTop: 20, marginLeft: 10, marginRight: 10 }}>
-                        <Text style={{ textAlign: 'center' }}>
-                            by sign up you agree to our
-                            <Link to={'https://whotrades.com/terms'}> terms and conditions </Link>
-                            and
-                            <Link to={'https://whotrades.com/privacy-policy'}> privacy policy</Link>
-                        </Text>
-                    </View>
+                <View style={{ paddingTop: 20, paddingLeft: 10, paddingRight: 10 }}>
+                    <Text style={{ textAlign: 'center' }}>
+                        by sign up you agree to our
+                        <Link to="https://whotrades.com/terms"> terms and conditions </Link>
+                        and
+                        <Link to="https://whotrades.com/privacy-policy"> privacy policy</Link>
+                    </Text>
+                </View>
 
-                    <View style={{ marginTop: 20 }}>
+                <View style={{ paddingTop: 20, paddingLeft: 10, paddingRight: 10 }}>
+                    <Button
+                        onPress={this._signUpAsync}
+                        block
+                    >
+                        <Text>Sign up</Text>
+                    </Button>
+                </View>
+
+                <View style={{ paddingTop: 25, alignItems: 'center' }}>
+                    <View>
                         <Button
-                            onPress={this._signUpAsync}
-                            block
+                            onPress={this._showSignInScreen}
+                            transparent
                         >
-                            <Text>Sign up</Text>
+                            <Text>Sign in</Text>
                         </Button>
                     </View>
-
-                    <View style={{ marginTop: 25, flex: 1, alignItems: 'center' }}>
-                        <View>
-                            <Button
-                                onPress={this._showSignInScreen}
-                                transparent
-                            >
-                                <Text>Sign in</Text>
-                            </Button>
-                        </View>
-                        <View>
-                            <Button
-                                onPress={this._showAbout}
-                                transparent
-                            >
-                                <Text>About us</Text>
-                            </Button>
-                        </View>
+                    <View>
+                        <Button
+                            onPress={this._showAbout}
+                            transparent
+                        >
+                            <Text>About us</Text>
+                        </Button>
                     </View>
-                </Content>
-            </Container>
+                </View>
+            </View>
         );
     }
 }
+
+SignUpScreen.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func
+    }).isRequired
+};

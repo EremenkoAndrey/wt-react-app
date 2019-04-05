@@ -19,8 +19,12 @@ function ActivityTitle({ userName, userAvatar, date }) {
                 ) : null}
 
                 <View style={styles.infoContainer}>
-                    <Text style={styles.name}>{userName}</Text>
-                    <FormatDate style={styles.date} date={date.created} />
+                    <View>
+                        <Text style={styles.name}>{userName}</Text>
+                    </View>
+                    <View>
+                        <FormatDate style={styles.date} date={date.created} />
+                    </View>
                 </View>
             </View>
         </View>

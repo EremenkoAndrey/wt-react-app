@@ -12,6 +12,10 @@ const AuthStack = createStackNavigator({
     SignIn: SignInScreen,
     SignUp: SignUpScreen,
     About: AboutScreen
+}, {
+    defaultNavigationOptions: {
+        header: null
+    }
 });
 
 const RootNavigator = createAppContainer(createSwitchNavigator(

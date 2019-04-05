@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ActivityIndicator, View } from 'react-native';
-import { Container, Button, Text, Icon } from 'native-base';
+import {
+    Container, Button, Text, Icon
+} from 'native-base';
 import token from '../services/token';
 import Feed from '../components/Feed';
 import { FETCH_USER } from '../actions/user';

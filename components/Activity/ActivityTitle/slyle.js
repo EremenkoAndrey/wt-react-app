@@ -25,12 +25,18 @@ export default StyleSheet.create({
     avatarContainer: {
         paddingRight: 10
     },
-    infoContainer: {},
+    infoContainer: {
+        flex: 1,
+        justifyContent: 'center'
+    },
     date: {
         color: '#8e8e93',
-        fontSize: 14
+        fontSize: 13,
+        lineHeight: 15
     },
     name: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 16,
+        lineHeight: 16
     }
 });

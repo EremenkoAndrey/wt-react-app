@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { View } from 'react-native';
 import { Card } from 'native-base';
 import PreviewPost from '../PreviewPost';
 import Comment from '../Comment';
@@ -17,7 +18,15 @@ function Activity({ activity }) {
         case 'comment':
             return <Comment id={id} />;
         default:
-            return <Text>{`Неизвестный тип контента: ${type}`}</Text>;
+            return (
+                <View
+                    style={{
+                        paddingTop: 10, paddingBottom: 10, paddingLeft: 10, paddingRight: 10
+                    }}
+                >
+                    <Text>{`Неизвестный тип контента: ${type}`}</Text>
+                </View>
+            );
         }
     };
 

@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import {
-    Container, Content, Form, Item, Input, Label, Button, Text, Toast
+    Form, Item, Input, Label, Button, Text, Toast
 } from 'native-base';
 import api from '../services/api';
 import token from '../services/token';
@@ -9,79 +10,81 @@ import Link from '../components/Link';
 
 
 export default class SignInScreen extends React.Component {
-    static navigationOptions = {
-        header: null
-    };
-
     constructor() {
         super();
         this.loading = false;
         this.state = {
-            error: false,
             username: 'ae@whotrades.org',
             password: ''
-        }
+        };
     }
 
     _showToast = () => {
         Toast.show({
-            text: "Wrong password!",
-            buttonText: "Okay",
+            text: 'Wrong password!',
+            buttonText: 'Okay',
             duration: 0,
-            type: "danger"
-        })
+            type: 'danger'
+        });
     };
 
     _setError = () => {
-        this.setState({
-            error: true
-        });
         this._showToast();
     };
 
     _signInAsync = async () => {
-        if (this.loading || !this.state.username || !this.state.password) {
+        const { navigation } = this.props;
+        const { password, username } = this.state;
+        if (this.loading || !username || !password) {
             return false;
         }
         this.loading = true;
-        const { username, password } = this.state;
 
         try {
             const result = await api.authorization(username, password);
             const { token: userToken } = result;
             await token.save(userToken);
-            this.props.navigation.navigate('App');
+            navigation.navigate('App');
+            return true;
         } catch (error) {
             this._setError();
             this.loading = false;
+            return false;
         }
     };
 
     _showSignUpScreen = () => {
-        this.props.navigation.navigate('SignUp')
+        const { navigation } = this.props;
+        navigation.navigate('SignUp');
     };
 
     _showAbout = () => {
-        this.props.navigation.navigate('About', { transition: 'vertical' })
+        const { navigation } = this.props;
+        navigation.navigate('About');
     };
 
     render() {
+        const { password, username } = this.state;
         return (
-            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch' }}>
+            <View
+                style={{
+                    flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'stretch'
+                }}
+            >
                 <View>
                     <Form>
                         <Item floatingLabel>
                             <Label>Username</Label>
                             <Input
-                                value={this.state.username}
-                                onChangeText={username => this.setState({ username })}
+                                value={username}
+                                onChangeText={value => this.setState({ username: value })}
                             />
                         </Item>
                         <Item floatingLabel last>
                             <Label>Password</Label>
                             <Input
-                                value={this.state.password}
-                                onChangeText={password => this.setState({ password })}
+                                value={password}
+                                onChangeText={value => this.setState({ password: value })}
                                 secureTextEntry
                             />
                         </Item>
@@ -91,13 +94,13 @@ export default class SignInScreen extends React.Component {
                 <View style={{ paddingTop: 20, paddingLeft: 10, paddingRight: 10 }}>
                     <Text style={{ textAlign: 'center' }}>
                         by sign in you agree to our
-                        <Link to={'https://whotrades.com/terms'}> terms and conditions </Link>
+                        <Link to="https://whotrades.com/terms"> terms and conditions </Link>
                         and
-                        <Link to={'https://whotrades.com/privacy-policy'}> privacy policy</Link>
+                        <Link to="https://whotrades.com/privacy-policy"> privacy policy</Link>
                     </Text>
                 </View>
 
-                <View style={{ paddingTop: 20 }}>
+                <View style={{ paddingTop: 20, paddingLeft: 10, paddingRight: 10 }}>
                     <Button
                         onPress={this._signInAsync}
                         block
@@ -128,3 +131,9 @@ export default class SignInScreen extends React.Component {
         );
     }
 }
+
+SignInScreen.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func
+    }).isRequired
+};
