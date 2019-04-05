@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 import Tool from '../Tool';
 import { Text } from '..';
 import styles from './style';
@@ -30,12 +31,10 @@ function PreviewPost({ post }) {
             ) : null}
 
             <View>
-                <Text
-                    numberOfLines={5}
-                    ellipsizeMode="tail"
-                >
-                    {post.shortContent}
-                </Text>
+                <HTMLView
+                    value={post.shortContent}
+                    RootComponent={element => (<Text {...element} />)}
+                />
             </View>
         </View>
     );

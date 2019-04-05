@@ -13,7 +13,8 @@ export default function WTText({ children, style, ...props }) {
 WTText.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.element
+        PropTypes.element,
+        PropTypes.arrayOf(PropTypes.element)
     ]),
     /* eslint react/forbid-prop-types:0 */
     style: PropTypes.object
