@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { Card } from 'native-base';
 import PreviewPost from '../PreviewPost';
 import Comment from '../Comment';
-import ActivityReason from '../ActivityReason';
-import ActivityTitle from '../ActivityTitle';
-import ActivityFooter from '../ActivityFooter';
-import { Text } from '../WTComponents';
+import ActivityReason from './ActivityReason';
+import ActivityTitle from './ActivityTitle';
+import ActivityFooter from './ActivityFooter';
+import { Text } from '..';
 
 function Activity({ activity }) {
     const renderContent = (id, type) => {

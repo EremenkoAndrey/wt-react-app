@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import { Text } from '../WTComponents';
+import { Text } from '..';
 import styles from './style';
 
 function PreviewPost({ post }) {

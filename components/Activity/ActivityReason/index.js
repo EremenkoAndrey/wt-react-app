@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from '../WTComponents';
+import { Text } from '../..';
 import styles from './slyle';
 
 export default function ActivityReason() {

@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Text } from '../WTComponents';
+import WTText from '../WTText';
 
 
 function FormatDate({ date, ...props }) {
     const formattedDate = moment(date).fromNow();
-    return (<Text {...props}>{formattedDate}</Text>);
+    return (<WTText {...props}>{formattedDate}</WTText>);
 }
 
 FormatDate.propTypes = {

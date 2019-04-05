@@ -19,10 +19,9 @@ class Feed extends React.Component {
 
     render() {
         const { feedList, getInitFeedData } = this.props;
-        const viewStyles = feedList.length ? { flex: 1, alignItems: 'center', justifyContent: 'center' } : {};
 
         return (
-            <View style={viewStyles}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 {feedList.length ? (
                     <FlatList
                         data={feedList}

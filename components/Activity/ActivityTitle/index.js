@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Image } from 'react-native';
-import { Text } from '../WTComponents';
-import FormatDate from '../FormatDate';
+import { Text, FormatDate } from '../..';
 import styles from './slyle';
 
 function ActivityTitle({ userName, userAvatar, date }) {

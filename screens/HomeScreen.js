@@ -9,7 +9,7 @@ import { FETCH_USER } from '../actions/user';
 
 class HomeScreen extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-        headerRight:(
+        headerRight: (
             <View style={{ flex: 1, justifyContent: 'center' }}>
                 <Button
                     title="Выйти из приложения"
