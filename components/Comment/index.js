@@ -1,22 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Text, View } from "native-base";
+import { View } from 'react-native';
+import { Text } from '..';
+import styles from './style';
 
 function Comment({ comment }) {
     return (
-        <View>
-            <Text>Это комментарий</Text>
+        <View style={styles.block}>
+            <View style={styles.textContainer}>
+                <Text
+                    numberOfLines={5}
+                    ellipsizeMode="tail"
+                >
+                    {comment.content}
+                </Text>
+            </View>
         </View>
     );
 }
 
 Comment.propTypes = {
-    id: PropTypes.string.isRequired
-};
-
-Comment.defaultProps = {
-
+    comment: PropTypes.shape({
+        content: PropTypes.string
+    }).isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({

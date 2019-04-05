@@ -12,7 +12,8 @@ class HomeScreen extends React.Component {
         headerRight: (
             <View style={{ flex: 1, justifyContent: 'center' }}>
                 <Button
-                    title="Выйти из приложения"
+                    transparent
+                    info
                     onPress={async () => {
                         await token.clear();
                         navigation.navigate('Auth');
