@@ -4,6 +4,7 @@ import { ADD_ACTIVITIES } from './activity';
 import { ADD_POSTS } from './posts';
 import { ADD_USERS } from './users';
 import { ADD_COMMENTS } from './comments';
+import { ADD_TOOLS } from './tools';
 import ERROR_HANDLER from './errors';
 
 function FETCH_FEED_SUCCESSFUL(res) {
@@ -14,7 +15,7 @@ function FETCH_FEED_SUCCESSFUL(res) {
             .filter(({ id }) => !!id);
 
         const {
-            activity, post: posts, user: users, comment: comments
+            activity, post: posts, user: users, comment: comments, instrument: tools
         } = normalize(records);
         if (activity) {
             dispatch(ADD_ACTIVITIES(activity));
@@ -27,6 +28,9 @@ function FETCH_FEED_SUCCESSFUL(res) {
         }
         if (comments) {
             dispatch(ADD_COMMENTS(comments));
+        }
+        if (tools) {
+            dispatch(ADD_TOOLS(tools));
         }
         return dispatch({ type: 'FETCH_FEED_SUCCESSFUL', payload: { boundary, boundaryRecordId, ids } });
     };

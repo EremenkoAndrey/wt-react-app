@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { FlatList, ActivityIndicator, View } from 'react-native';
 import Activity from '../Activity';
 import { FETCH_FEED } from '../../actions/feed';
+import styles from './style';
 
 const Spinner = connect(state => ({
     loading: state.feed.loading
@@ -21,9 +22,10 @@ class Feed extends React.Component {
         const { feedList, getInitFeedData } = this.props;
 
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={styles.block}>
                 {feedList.length ? (
                     <FlatList
+                        style={styles.list}
                         data={feedList}
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => <Activity id={item.id} />}

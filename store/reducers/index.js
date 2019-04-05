@@ -6,6 +6,7 @@ import users from './users';
 import activity from './activity';
 import posts from './posts';
 import comments from './comments';
+import tools from './tools';
 
 export default combineReducers({
     errors,
@@ -14,5 +15,6 @@ export default combineReducers({
     users,
     activity,
     posts,
-    comments
+    comments,
+    tools
 });

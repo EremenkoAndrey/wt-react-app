@@ -1,6 +1,6 @@
 export default (state = {}, action) => {
     switch (action.type) {
-    case 'ADD_ACTIVITIES':
+    case 'ADD_TOOLS':
         return {
             ...state,
             ...action.payload
@@ -8,4 +8,4 @@ export default (state = {}, action) => {
     default:
         return state;
     }
-};
+}

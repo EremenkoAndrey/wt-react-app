@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-
+import { window } from '../../constants/Layout';
 
 export default StyleSheet.create({
     block: {
@@ -18,5 +18,14 @@ export default StyleSheet.create({
     titleContainer: {
         marginBottom: 10
     },
-    textContainer: {}
+    instruments: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        marginBottom: 20,
+        overflow: 'hidden',
+        width: window.width - 40
+    },
+    instrument: {
+        marginRight: 10
+    }
 });
