@@ -1,10 +1,13 @@
-import { createStackNavigator, createSwitchNavigator, createAppContainer, createDrawerNavigator } from 'react-navigation';
+import {
+    createStackNavigator, createSwitchNavigator, createAppContainer, createDrawerNavigator
+} from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen';
 import DetailPostScreen from '../screens/DetailPostScreen';
 import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import AboutScreen from '../screens/AboutScreen';
+import DrawerScreen from '../screens/DrawerScreen';
 
 const AppStack = createStackNavigator({
     Home: HomeScreen,
@@ -23,11 +26,10 @@ const AuthStack = createStackNavigator({
 
 const DrawerWrapAppStack = createDrawerNavigator({
     AppStack: {
-        screen: AppStack,
-        navigationOptions: {
-            title: 'Whotrades'
-        }
+        screen: AppStack
     }
+}, {
+    contentComponent: DrawerScreen
 });
 
 const RootNavigator = createAppContainer(createSwitchNavigator(
