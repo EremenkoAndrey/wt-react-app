@@ -4,14 +4,18 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     block: {
         flex: 1,
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         paddingTop: 10,
         paddingBottom: 10,
         paddingLeft: 10,
         paddingRight: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#c4c4c4'
+    },
+    more: {
+        paddingRight: 10
     },
     userCard: {
         flex: 1,
