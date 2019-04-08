@@ -7,7 +7,6 @@ import PreviewPost from '../PreviewPost';
 import Comment from '../Comment';
 import ActivityReason from './ActivityReason';
 import ActivityTitle from './ActivityTitle';
-import ActivityFooter from './ActivityFooter';
 import { Text } from '..';
 
 function Activity({ activity }) {
@@ -37,8 +36,6 @@ function Activity({ activity }) {
             <ActivityTitle userId={activity.generator.id} date={activity.date} />
 
             {renderContent(activity.obj.id, activity.obj.type)}
-
-            <ActivityFooter />
         </Card>
     );
 }

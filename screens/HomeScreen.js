@@ -2,22 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ActivityIndicator, View } from 'react-native';
-import {
-    Container, Button, Text, Icon
-} from 'native-base';
+import { Container, Button, Text } from 'native-base';
 import token from '../services/token';
 import Feed from '../components/Feed';
+import HeaderMenu from '../components/HeaderMenu';
 import { FETCH_USER } from '../actions/user';
 
 class HomeScreen extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-        headerLeft: (
-            <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Button transparent>
-                    <Icon name="menu" />
-                </Button>
-            </View>
-        ),
+        headerLeft: <HeaderMenu />,
         headerRight: (
             <View style={{ flex: 1, justifyContent: 'center' }}>
                 <Button

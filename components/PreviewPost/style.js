@@ -6,7 +6,6 @@ export default StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#c4c4c4',
         paddingTop: 10,
-        paddingBottom: 10,
         paddingLeft: 10,
         paddingRight: 10
     },
@@ -27,5 +26,25 @@ export default StyleSheet.create({
     },
     instrument: {
         marginRight: 10
+    },
+    content: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#c4c4c4',
+        paddingBottom: 10
+    },
+    actions: {
+        flexDirection: 'row',
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 10,
+        paddingRight: 10
+    },
+    actionsColumn: {
+        flex: 1,
+        alignItems: 'center'
+    },
+    actionsColumnBordered: {
+        borderRightWidth: 1,
+        borderRightColor: '#c4c4c4'
     }
 });

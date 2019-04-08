@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import { Icon } from 'native-base';
 import HTMLView from 'react-native-htmlview';
 import Tool from '../Tool';
 import { Text } from '..';
 import styles from './style';
 
-function PreviewPost({ post }) {
+function PreviewPost({ post, navigation }) {
     return (
         <View style={styles.block}>
             {Array.isArray(post.instruments)
@@ -23,18 +25,35 @@ function PreviewPost({ post }) {
                 : null}
 
             {post.title ? (
-                <View style={styles.titleContainer}>
+                <TouchableOpacity
+                    style={styles.titleContainer}
+                    onPress={() => navigation.navigate('DetailPost', {
+                        html: post.content,
+                        title: post.title
+                    })}
+                >
                     <Text style={styles.title}>
                         {post.title}
                     </Text>
-                </View>
+                </TouchableOpacity>
             ) : null}
 
-            <View>
+            <View style={styles.content}>
                 <HTMLView
                     value={post.shortContent}
                     RootComponent={element => (<Text {...element} />)}
                 />
+            </View>
+
+            <View style={styles.actions}>
+                <View style={[styles.actionsColumn, styles.actionsColumnBordered]}><Icon name="ios-thumbs-up" style={{ fontSize: 20 }} /></View>
+                <View style={[styles.actionsColumn, styles.actionsColumnBordered]}><Icon name="ios-thumbs-down" style={{ fontSize: 20 }} /></View>
+                <View style={styles.actionsColumn}>
+                    <Icon
+                        name="ios-share-alt"
+                        style={{ fontSize: 20 }}
+                    />
+                </View>
             </View>
         </View>
     );
@@ -50,8 +69,11 @@ PreviewPost.propTypes = {
                 id: PropTypes.string
             }))
         ]).isRequired,
-        shortContent: PropTypes.string.isRequired,
+        shortContent: PropTypes.string,
         title: PropTypes.string
+    }).isRequired,
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func
     }).isRequired
 };
 
@@ -59,4 +81,4 @@ const mapStateToProps = (state, ownProps) => ({
     post: state.posts[ownProps.id]
 });
 
-export default connect(mapStateToProps)(PreviewPost);
+export default withNavigation(connect(mapStateToProps)(PreviewPost));
