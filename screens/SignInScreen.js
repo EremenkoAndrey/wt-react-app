@@ -14,7 +14,7 @@ export default class SignInScreen extends React.Component {
         super();
         this.loading = false;
         this.state = {
-            username: 'ae@whotrades.org',
+            username: '',
             password: ''
         };
     }

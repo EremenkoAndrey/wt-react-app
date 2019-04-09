@@ -31,7 +31,7 @@ function ActivityTitle({ userName, userAvatar, date }) {
 
             <View style={styles.more}>
                 <Button
-                    iconLeft
+                    iconRight
                     transparent
                     onPress={() => ActionSheet.show({
                         options: [
