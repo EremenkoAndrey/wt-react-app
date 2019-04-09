@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { window } from '../../constants/Layout';
+import colors from '../../constants/Colors';
+import fonts from '../../constants/Fonts';
 
 export default StyleSheet.create({
     block: {
@@ -46,5 +48,11 @@ export default StyleSheet.create({
     actionsColumnBordered: {
         borderRightWidth: 1,
         borderRightColor: '#c4c4c4'
+    },
+    htmlFont: {
+        fontSize: fonts.baseFontSize,
+        fontFamily: fonts.baseFontFamily,
+        lineHeight: fonts.baselineHeight,
+        color: colors.baseTextColor
     }
 });

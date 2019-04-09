@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import { StatusBar, ActivityIndicator, View } from 'react-native';
-import { Root } from 'native-base';
+import { StatusBar, ActivityIndicator, View, Platform, SafeAreaView } from 'react-native';
+import {Container, Root} from 'native-base';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import configureStore from './store';
-import { RootNavigator } from './navigation/';
+import { RootNavigator } from './navigation';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 
@@ -38,17 +38,19 @@ export default class App extends Component {
     }
 
     render() {
-        if (!this.state.isReady) {
+        const { isReady } = this.state;
+        if (!isReady) {
             return (
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <ActivityIndicator />
                 </View>
-            )
+            );
         }
+
         return (
             <Provider store={store}>
                 <Root>
-                    <StatusBar />
+                    <StatusBar barStyle="dark-content" />
                     <RootNavigator />
                 </Root>
             </Provider>

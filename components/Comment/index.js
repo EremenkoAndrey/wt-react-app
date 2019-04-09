@@ -13,7 +13,7 @@ function Comment({ comment }) {
                     numberOfLines={5}
                     ellipsizeMode="tail"
                 >
-                    {comment.content}
+                    {`Comment: ${comment.content}`}
                 </Text>
             </View>
         </View>

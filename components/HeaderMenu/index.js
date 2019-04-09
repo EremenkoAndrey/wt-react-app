@@ -4,8 +4,6 @@ import { withNavigation } from 'react-navigation';
 import { Button, Icon } from 'native-base';
 
 function HeaderMenu({ navigation }) {
-    console.log('navigation', navigation)
-
     return (
         <View style={{ flex: 1, justifyContent: 'center' }}>
             <Button
