@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from '../..';
+import { Text } from '../../../functional';
 import getTypeByCode from '../../../utils/get-type-by-code';
 import styles from './slyle';
 

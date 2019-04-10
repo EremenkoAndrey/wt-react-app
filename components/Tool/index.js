@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
-import { Text } from '..';
+import { Text } from '../../functional';
 import styles from './style';
 
 function Tool({

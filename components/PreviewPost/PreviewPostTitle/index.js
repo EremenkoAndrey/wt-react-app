@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Image } from 'react-native';
 import { Icon, Button, ActionSheet } from 'native-base';
-import { Text, FormatDate } from '../..';
+import { Text, Date } from '../../../functional';
 import styles from './slyle';
 
 function PreviewPostTitle({ userName, userAvatar, date }) {
@@ -24,7 +24,7 @@ function PreviewPostTitle({ userName, userAvatar, date }) {
                         <Text style={styles.name}>{userName}</Text>
                     </View>
                     <View>
-                        <FormatDate style={styles.date} date={date.created} />
+                        <Date style={styles.date} date={date.created} />
                     </View>
                 </View>
             </View>

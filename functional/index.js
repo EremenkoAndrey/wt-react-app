@@ -1,10 +1,10 @@
-import FormatDate from './FormatDate';
+import Date from './Date';
 import Link from './Link';
 import WTText from './WTText';
 
 
 export {
-    FormatDate,
+    Date,
     Link,
     WTText as Text
 };

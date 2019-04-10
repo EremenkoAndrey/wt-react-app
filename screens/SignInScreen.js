@@ -6,7 +6,7 @@ import {
 } from 'native-base';
 import api from '../services/api';
 import token from '../services/token';
-import Link from '../components/Link';
+import Link from '../functional/Link';
 
 
 export default class SignInScreen extends React.Component {

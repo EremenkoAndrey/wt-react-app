@@ -6,7 +6,7 @@ import { View, TouchableOpacity } from 'react-native';
 import { Icon } from 'native-base';
 import HTMLView from 'react-native-htmlview';
 import Tool from '../Tool';
-import { Text } from '..';
+import { Text } from '../../functional';
 import PreviewPostTitle from './PreviewPostTitle';
 import styles from './style';
 

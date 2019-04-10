@@ -6,7 +6,7 @@ import { Card } from 'native-base';
 import PreviewPost from '../PreviewPost';
 import Comment from '../Comment';
 import ActivityReason from './ActivityReason';
-import { Text } from '..';
+import { Text } from '../../functional';
 
 function Activity({ activity }) {
     const renderContent = (id, type) => {

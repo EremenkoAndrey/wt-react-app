@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import {
     Form, Item, Input, Label, Button, Text
 } from 'native-base';
-import Link from '../components/Link';
+import Link from '../functional/Link';
 
 export default class SignUpScreen extends React.Component {
     constructor() {
