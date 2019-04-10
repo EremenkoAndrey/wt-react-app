@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { WebView } from 'react-native';
-import { window } from '../constants/Layout';
+import DetailPost from '../components/DetailPost';
 
 class DetailPostScreen extends React.Component {
     static navigationOptions = ({ navigation }) => ({
@@ -16,15 +15,9 @@ class DetailPostScreen extends React.Component {
     render() {
         const { navigation } = this.props;
         const html = navigation.getParam('html');
+        const title = navigation.getParam('title');
         return (
-            <WebView
-                originWhitelist={['*']}
-                source={{ html }}
-                style={{
-                    width: window.width,
-                    height: window.height
-                }}
-            />
+            <DetailPost content={html} title={title} />
         );
     }
 }

@@ -31,7 +31,7 @@ function PreviewPostTitle({ userName, userAvatar, date }) {
 
             <View style={styles.more}>
                 <Button
-                    iconLeft
+                    iconRight
                     transparent
                     title="More"
                     onPress={() => ActionSheet.show({

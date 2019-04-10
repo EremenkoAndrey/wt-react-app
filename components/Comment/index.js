@@ -8,12 +8,12 @@ import styles from './style';
 function Comment({ comment }) {
     return (
         <View style={styles.block}>
-            <View>
+            <View style={styles.textContainer}>
                 <Text
                     numberOfLines={5}
                     ellipsizeMode="tail"
                 >
-                    {`It is comment: ${comment.content}`}
+                    {`Comment: ${comment.content}`}
                 </Text>
             </View>
         </View>

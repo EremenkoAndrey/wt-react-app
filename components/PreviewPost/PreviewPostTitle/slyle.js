@@ -15,9 +15,7 @@ export default StyleSheet.create({
         borderBottomColor: '#c4c4c4',
         marginBottom: 10
     },
-    more: {
-        paddingRight: 10
-    },
+    more: {},
     userCard: {
         flex: 1,
         flexDirection: 'row',
