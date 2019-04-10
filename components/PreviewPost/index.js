@@ -7,11 +7,15 @@ import { Icon } from 'native-base';
 import HTMLView from 'react-native-htmlview';
 import Tool from '../Tool';
 import { Text } from '..';
+import PreviewPostTitle from './PreviewPostTitle';
 import styles from './style';
+
 
 function PreviewPost({ post, navigation }) {
     return (
         <View style={styles.block}>
+            <PreviewPostTitle userId={post.author.id} date={post.date} />
+
             {Array.isArray(post.instruments)
                 ? (
                     <View style={styles.instruments}>
@@ -69,6 +73,9 @@ PreviewPost.propTypes = {
                 id: PropTypes.string
             }))
         ]).isRequired,
+        author: PropTypes.shape({
+            id: PropTypes.string.isRequired
+        }),
         shortContent: PropTypes.string,
         title: PropTypes.string
     }).isRequired,

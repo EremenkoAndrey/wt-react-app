@@ -6,7 +6,6 @@ import { Card } from 'native-base';
 import PreviewPost from '../PreviewPost';
 import Comment from '../Comment';
 import ActivityReason from './ActivityReason';
-import ActivityTitle from './ActivityTitle';
 import { Text } from '..';
 
 function Activity({ activity }) {
@@ -31,9 +30,7 @@ function Activity({ activity }) {
 
     return (
         <Card>
-            {activity.data.reason ? <ActivityReason reasonData={activity.data.reason} /> : null}
-
-            <ActivityTitle userId={activity.generator.id} date={activity.date} />
+            {activity.data.reason ? <ActivityReason reason={activity.data.reason} /> : null}
 
             {renderContent(activity.obj.id, activity.obj.type)}
         </Card>

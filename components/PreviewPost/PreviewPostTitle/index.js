@@ -6,7 +6,7 @@ import { Icon, Button, ActionSheet } from 'native-base';
 import { Text, FormatDate } from '../..';
 import styles from './slyle';
 
-function ActivityTitle({ userName, userAvatar, date }) {
+function PreviewPostTitle({ userName, userAvatar, date }) {
     return (
         <View style={styles.block}>
             <View style={styles.userCard}>
@@ -33,6 +33,7 @@ function ActivityTitle({ userName, userAvatar, date }) {
                 <Button
                     iconLeft
                     transparent
+                    title="More"
                     onPress={() => ActionSheet.show({
                         options: [
                             { text: 'Subscribe to author', icon: 'ios-add-circle-outline', iconColor: '#007aff' },
@@ -50,7 +51,7 @@ function ActivityTitle({ userName, userAvatar, date }) {
     );
 }
 
-ActivityTitle.propTypes = {
+PreviewPostTitle.propTypes = {
     userName: PropTypes.string.isRequired,
     date: PropTypes.shape({
         created: PropTypes.string,
@@ -59,7 +60,7 @@ ActivityTitle.propTypes = {
     userAvatar: PropTypes.string
 };
 
-ActivityTitle.defaultProps = {
+PreviewPostTitle.defaultProps = {
     userAvatar: ''
 };
 
@@ -68,4 +69,4 @@ const mapStateToProps = (state, ownProps) => ({
     userAvatar: state.users[ownProps.userId].image
 });
 
-export default connect(mapStateToProps)(ActivityTitle);
+export default connect(mapStateToProps)(PreviewPostTitle);

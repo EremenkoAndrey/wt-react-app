@@ -1,5 +1,5 @@
 const types = new Map([
-    [1, 'user'],[2, 'group'], [3, 'post'], [4, 'file'], [5, 'instrument'], [6, 'comment']
+    [1, 'user'], [2, 'group'], [3, 'post'], [4, 'file'], [5, 'instrument'], [6, 'comment']
 ]);
 
 function isObject(val) {
@@ -25,13 +25,18 @@ export default function normalize(data) {
     const addToResult = (object, type) => {
         result[type] = result[type] || {};
         const id = `${object.id}`; // приведение id к строке
+
+        // Сохранить тип activity в объекте data
+        if (type === 'activity') {
+            object.data.activityType = object.type;
+        }
         if (result[type][id]) {
             result[type][id] = {
                 ...result[type][id],
                 ...object,
                 type,
                 id
-            }
+            };
         } else {
             result[type][id] = {
                 ...object,
@@ -44,7 +49,6 @@ export default function normalize(data) {
     const findEntity = (value) => {
         // Если массив, обследовать каждый элемент
         if (Array.isArray(value)) {
-
             value.forEach(val => findEntity(val));
             // Если объект является сущностью, то добавить его в результат.
             // Исследовать все свойства объекта
@@ -54,49 +58,41 @@ export default function normalize(data) {
                 addToResult(value, objType);
             }
 
-            for (let propName in value) {
-                if (!value.hasOwnProperty(propName)) {
-                    continue;
-                }
-                findEntity(value[propName])
-            }
+            Object.values(value).forEach(prop => findEntity(prop));
         }
     };
 
     const replaceDataToLinks = (object) => {
+        function findEndReplace(obj) {
+            Object.keys(obj).forEach((key) => {
+                if (isObject(obj[key])) {
+                    const type = getType(obj[key]);
+                    if (type) {
+                        /* eslint no-param-reassign:0 */
+                        obj[key] = {
+                            id: `${obj[key].id}`,
+                            type
+                        };
+                    } else {
+                        findEndReplace(obj[key]);
+                    }
+                }
+            });
+        }
+
         const typeNames = Object.keys(object);
         typeNames.forEach((name) => {
             const ids = Object.keys(object[name]);
             ids.forEach((id) => {
                 const entity = object[name][id];
                 findEndReplace(entity);
-            })
+            });
         });
-
-        function findEndReplace(obj) {
-            for (let prop in obj) {
-                if (!obj.hasOwnProperty(prop)) {
-                    continue;
-                }
-
-                if (isObject(obj[prop])) {
-                    const type = getType(obj[prop]);
-                    if (type) {
-                        obj[prop] = {
-                            id: `${obj[prop].id}`,
-                            type
-                        }
-                    } else {
-                        findEndReplace(obj[prop]);
-                    }
-                }
-            }
-        }
 
         return object;
     };
 
     findEntity(data);
 
-    return  replaceDataToLinks(result);
+    return replaceDataToLinks(result);
 }

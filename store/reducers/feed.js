@@ -2,7 +2,7 @@ const initialState = {
     list: [],
     boundary: null,
     boundaryRecordId: null,
-    enableRecommendations: false,
+    enableRecommendations: true,
     orderBy: 'rank',
     loading: false,
     stopLoad: false

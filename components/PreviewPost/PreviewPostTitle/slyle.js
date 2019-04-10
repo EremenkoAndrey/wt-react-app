@@ -12,7 +12,8 @@ export default StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         borderBottomWidth: 1,
-        borderBottomColor: '#c4c4c4'
+        borderBottomColor: '#c4c4c4',
+        marginBottom: 10
     },
     more: {
         paddingRight: 10

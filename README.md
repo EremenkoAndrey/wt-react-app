@@ -15,3 +15,7 @@
   Key alias:         `QGFlcmVtZW5rby9yZWFjdC1uYXRpdmUtYXBw`
   
   Key password:      `29381118c7424defb071cffde791d5d5`
+  
+  TODO:
+  - feed с рекомендациями соответствует фиду на сате, без рекомендаций на сайте пусто, а
+  в приложении есть посты: разобраться в причинах;

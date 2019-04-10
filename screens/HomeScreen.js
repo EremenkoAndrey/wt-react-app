@@ -14,6 +14,7 @@ class HomeScreen extends React.Component {
         headerRight: (
             <View style={{ flex: 1, justifyContent: 'center' }}>
                 <Button
+                    title="Logout"
                     transparent
                     info
                     onPress={async () => {
@@ -45,7 +46,7 @@ class HomeScreen extends React.Component {
         }
         return (
             <Container>
-                <Feed />
+                <Feed userId={userId} />
             </Container>
         );
     }

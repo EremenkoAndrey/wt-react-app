@@ -1,0 +1,36 @@
+            <% switch(latestReasonType) {
+
+
+            <% default: %>
+                <% if (generators.length) { %>
+                    {strip}
+                    <a href="<%= generators[0].url %>" data-generator-type="<%= generators[0].type %>" data-generator-id="<%= generators[0].id %>" class="blink js-activity-author-tooltip"><%= generators[0].displayName %></a>
+                    <% if (statistic[-1] > 1) { %>
+                        <% for (var i = 1; i < (generators.length - 2); i++) { %>
+                            , <a href="<%= generators[i].url %>" data-generator-type="<%= generators[i].type %>" data-generator-id="<%= generators[i].id %>" class="blink js-activity-author-tooltip"><%= generators[i].displayName %></a>
+                        <% } %>
+
+                        <% var lastGenerator = generators[generators.length - 1] %>
+
+                        <% if (statistic[-1] === generators.length) { %>
+                            <span> <%= separatorAnd %> </span>
+                            <a href="<%= lastGenerator.url %>" data-generator-type="<%= lastGenerator.type %>" data-generator-id="<%= lastGenerator.id %>" class="blink js-activity-author-tooltip"><%= lastGenerator.displayName %></a>
+                        <% } else { %>
+                            , <a href="<%= lastGenerator.url %>" data-generator-type="<%= lastGenerator.type %>" data-generator-id="<%= lastGenerator.id %>" class="blink js-activity-author-tooltip"><%= lastGenerator.displayName %></a>
+                            <span> <%= separatorAnd %> </span>
+                            <span class="activity-reason__some_else blink"><%= someElse %></span>
+                        <% } %>
+                    <% } %>
+                    <%= subscriptionWord %> <%= action %> <% date_template(latestReasonDates[0]) %>
+                    {/strip}
+                <% } else if (statistic[6]) { %>
+                    {* Новые комментарии *}
+                    {dic word="activity_reason__action_new_comments"} <% date_template(latestReasonDates[6]) %>
+                <% } else if (statistic[5]) { %>
+                    {* Новые лайки *}
+                    {dic word="activity_reason__action_new_votes"} <% date_template(latestReasonDates[5]) %>
+                <% } %>
+
+                <% break; %>
+            <% } %>
+

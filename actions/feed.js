@@ -36,12 +36,12 @@ function FETCH_FEED_SUCCESSFUL(res) {
     };
 }
 
-export function FETCH_FEED() {
+export function FETCH_FEED(userId) {
     return (dispatch, getState) => {
         const { user, feed } = getState();
         const params = [
             user.settings.lang,
-            user.id,
+            userId,
             1, // номер сущности user,
             'feed', // тип выборки ('feed'/'timeline')
             feed.boundary,

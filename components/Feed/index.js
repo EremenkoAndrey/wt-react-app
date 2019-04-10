@@ -12,14 +12,19 @@ const Spinner = connect(state => ({
 
 class Feed extends React.Component {
     componentDidMount() {
-        const { feedList, getInitFeedData } = this.props;
+        const { feedList } = this.props;
         if (!feedList.length) {
-            getInitFeedData();
+            this.loadMore();
         }
     }
 
+    loadMore = () => {
+        const { getFeedData, userId } = this.props;
+        getFeedData(userId);
+    };
+
     render() {
-        const { feedList, getInitFeedData } = this.props;
+        const { feedList } = this.props;
 
         return (
             <View style={styles.block}>
@@ -29,7 +34,7 @@ class Feed extends React.Component {
                         data={feedList}
                         keyExtractor={item => item.id}
                         renderItem={({ item }) => <Activity id={item.id} />}
-                        onEndReached={getInitFeedData}
+                        onEndReached={this.loadMore}
                         onEndReachedThreshold={1}
                     />
                 ) : null}
@@ -40,10 +45,11 @@ class Feed extends React.Component {
 }
 
 Feed.propTypes = {
+    userId: PropTypes.string.isRequired,
     feedList: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string
     })).isRequired,
-    getInitFeedData: PropTypes.func.isRequired
+    getFeedData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -52,7 +58,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    getInitFeedData: () => dispatch(FETCH_FEED())
+    getFeedData: userId => dispatch(FETCH_FEED(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);

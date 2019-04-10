@@ -4,10 +4,7 @@ import { window } from '../../constants/Layout';
 export default StyleSheet.create({
     block: {
         borderBottomWidth: 1,
-        borderBottomColor: '#c4c4c4',
-        paddingTop: 10,
-        paddingLeft: 10,
-        paddingRight: 10
+        borderBottomColor: '#c4c4c4'
     },
     title: {
         fontSize: 18,
@@ -15,6 +12,8 @@ export default StyleSheet.create({
         fontWeight: 'bold'
     },
     titleContainer: {
+        paddingLeft: 10,
+        paddingRight: 10,
         marginBottom: 10
     },
     instruments: {
@@ -28,20 +27,23 @@ export default StyleSheet.create({
         marginRight: 10
     },
     content: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#c4c4c4',
-        paddingBottom: 10
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginBottom: 10
     },
     actions: {
         flexDirection: 'row',
-        paddingTop: 10,
-        paddingBottom: 10,
+        alignItems: 'stretch',
         paddingLeft: 10,
-        paddingRight: 10
+        paddingRight: 10,
+        borderTopWidth: 1,
+        borderTopColor: '#c4c4c4'
     },
     actionsColumn: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingTop: 10,
+        paddingBottom: 10
     },
     actionsColumnBordered: {
         borderRightWidth: 1,
