@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from '../../../functional';
-import getTypeByCode from '../../../utils/get-type-by-code';
+import { Text, Dict } from '../../../functional';
+import getTypeByCode from '../../../services/get-type-by-code';
 import styles from './slyle';
 
 export default function ActivityReason({ reason }) {
@@ -9,10 +9,11 @@ export default function ActivityReason({ reason }) {
     // Код причины - строковое значение ключа в единственном свойстве объекта latestReasonsData
     const reasonCode = Object.keys(latestReasonsData)[0];
     const reasonType = getTypeByCode(reasonCode);
+console.log('reasonType', reasonType)
 
     return (
         <View style={styles.block}>
-            <Text style={styles.text}>{`Activity reason: ${reasonType} ${reasonCode}`}</Text>
+            <Dict style={styles.text} code={reasonType} />
         </View>
     );
 }
