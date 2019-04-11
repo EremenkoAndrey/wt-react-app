@@ -1,35 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import { Dict, Date, UserLink } from '../../../functional';
 import getTypeByCode from '../../../services/get-type-by-code';
 import styles from './slyle';
-
-const buildText = (reasonId, key, date, userId) => {
-    switch (reasonId) {
-    case '1':
-        return (
-            <Text>
-                {key ? <Dict style={styles.text} code={key} spaceAfter /> : null}
-                {userId ? <UserLink style={[styles.text, styles.link]} id={userId} /> : null}
-            </Text>
-        );
-    case '11':
-        return (
-            <Text>
-                {userId ? <UserLink style={[styles.text, styles.link]} id={userId} /> : null}
-                {date ? <Date style={styles.text} spaceBefore spaceAfter>{date}</Date> : null}
-                {key ? <Dict style={styles.text} code={key} /> : null}
-            </Text>
-        );
-    default:
-        return (
-            <Text>
-                {key ? <Dict style={styles.text} code={key} /> : null}
-                {date ? <Date style={styles.text} spaceBefore spaceAfter>{date}</Date> : null}
-            </Text>
-        );
-    }
-};
 
 /**
  * @return {null}
@@ -41,11 +15,69 @@ export default function ActivityReason({ reasonData, userGenerator }) {
         return null;
     }
     const reasonKey = getTypeByCode(reasonId);
-    const date = reasonData[reasonId].date || '';
+    const date = reasonData.date || '';
+    const hasSubscriptionGenerator = reasonData.subscriptionGenerator
+        && reasonData.subscriptionGenerator.id;
 
-    return (
-        <View style={styles.block}>
-            {buildText(reasonId, reasonKey, date, userGenerator.id)}
-        </View>
-    );
+    switch (reasonId) {
+    case '1':
+        return (
+            <View style={styles.baseBlock}>
+                <Text>
+                    <Dict style={styles.text} code={reasonKey} spaceAfter />
+                    <UserLink style={[styles.text, styles.link]} id={userGenerator.id} />
+                </Text>
+            </View>
+        );
+    case '5':
+        // Цветная плашка
+        return hasSubscriptionGenerator ? (
+            <View style={styles.coloredBlock}>
+                <Text>
+                    <UserLink
+                        style={[styles.coloredText, styles.coloredTextBold]}
+                        id={reasonData.subscriptionGenerator.id}
+                    />
+
+                    <Dict style={styles.coloredText} code={reasonKey} spaceBefore spaceAfter />
+                    <UserLink
+                        style={[styles.coloredText, styles.coloredTextBold]}
+                        id={userGenerator.id}
+                    />
+                </Text>
+            </View>
+        ) : null;
+    case '11':
+        return (
+            <View style={styles.baseBlock}>
+                <Text>
+                    <UserLink style={[styles.text, styles.link]} id={userGenerator.id} />
+                    <Date style={styles.text} spaceBefore spaceAfter>{date}</Date>
+                    <Dict style={styles.text} code={reasonKey} />
+                </Text>
+            </View>
+        );
+    default:
+        return (
+            <View style={styles.baseBlock}>
+                <Text>
+                    <Dict style={styles.text} code={reasonKey} />
+                    <Date style={styles.text} spaceBefore spaceAfter>{date}</Date>
+                </Text>
+            </View>
+        );
+    }
 }
+
+ActivityReason.propTypes = {
+    reasonData: PropTypes.shape({
+        code: PropTypes.string,
+        subscriptionGenerator: PropTypes.shape({
+            id: PropTypes.string
+        }),
+        date: PropTypes.string
+    }).isRequired,
+    userGenerator: PropTypes.shape({
+        id: PropTypes.string
+    }).isRequired
+};

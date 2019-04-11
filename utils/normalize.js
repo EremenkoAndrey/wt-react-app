@@ -44,9 +44,13 @@ export default function normalize(data) {
             // Код причины приходит как ключ единственного свойства объекта latestReasonsData
             const reasonCode = Object.keys(object.data.reason.latestReasonsData)[0];
             // Если ключ есть (то есть свойство с сервера пришло и это не массив)
-            // сохраняю его в объекте latestReasonsData
+            // сохраняю его в новом объекте latestReasonsData, в который копирую все
+            // свойства из объекта, доступного по ключу
             if (reasonCode) {
-                object.data.reason.latestReasonsData.code = reasonCode;
+                object.data.reason.latestReasonsData = {
+                    ...object.data.reason.latestReasonsData[reasonCode],
+                    code: reasonCode
+                };
             }
         }
 

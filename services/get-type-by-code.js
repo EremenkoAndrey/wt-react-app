@@ -4,6 +4,10 @@ export default function getTypeByCode(code) {
         return 'PUBLISHED_POST'; // Опубликован пост
     case '3':
         return 'FORECAST_RESULT_PUBLISHED'; // Опубликованы результаты прогноза
+    case '5':
+        return 'VOTE_POST'; // Пользователь рекомендует этот пост
+    case '6':
+        return 'COMMENT_POST'; // Пользователь прокомментировал этот пост
     case '11':
         return 'SHARING'; // Шаринг
     case '17':
@@ -45,6 +49,11 @@ export default function getTypeByCode(code) {
     case '4000':
         return 'SOCIAL_ACTIVE_CONTENT'; // Социально активный контент
     default:
+        /* eslint no-undef:0 */
+        if (__DEV__) {
+            /* eslint no-console:0 */
+            console.log(`getTypeByCode function: not found code ${code}`);
+        }
         return '';
     }
 }

@@ -39,7 +39,7 @@ function Activity({ activity }) {
 
             {renderContent(activity.obj.id, activity.obj.type)}
 
-            <Text>{`Activity id: ${activity.id}`}</Text>
+            <Text style={{ textAlign: 'center' }}>{`Activity id: ${activity.id}`}</Text>
         </Card>
     );
 }

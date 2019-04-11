@@ -8,7 +8,7 @@ import styles from './style';
 function Comment({ comment }) {
     return (
         <View style={styles.block}>
-            <View style={styles.textContainer}>
+            <View>
                 <Text
                     numberOfLines={5}
                     ellipsizeMode="tail"

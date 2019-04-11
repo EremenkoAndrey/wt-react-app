@@ -60,7 +60,7 @@ function PreviewPost({ post, navigation }) {
                 </View>
             </View>
 
-            <Text>{`Post id: ${post.id}`}</Text>
+            <Text style={{ textAlign: 'center' }}>{`Post id: ${post.id}`}</Text>
         </View>
     );
 }
