@@ -1,6 +1,6 @@
 export default {
     SETTINGS: 'Settings',
-    // FEED: 'Feed',
+    FEED: 'Feed',
     INFORMATION: 'Information',
     FEED_SETTINGS: 'Feed settings',
     ACCOUNT_SETTINGS: 'Account',
