@@ -14,7 +14,7 @@ function Tool({
     return (
         <View style={[styles.block, { backgroundColor: bg }, fs]}>
             <View style={styles.name}>
-                <Text style={styles.textName}>{ticker}</Text>
+                <Text style={[fs, styles.textName]}>{ticker}</Text>
             </View>
             <View>
                 <Text style={fs}>{price}</Text>

@@ -21,7 +21,7 @@ export default StyleSheet.create({
     instruments: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        marginBottom: 20,
+        marginBottom: 10,
         marginLeft: 10,
         marginRight: 10,
         overflow: 'hidden',

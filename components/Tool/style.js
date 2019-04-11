@@ -4,9 +4,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     block: {
         flexDirection: 'row',
-        borderRadius: 5,
-        paddingTop: 1,
-        paddingBottom: 1,
+        borderRadius: 10,
         paddingLeft: 10,
         paddingRight: 10
     },
