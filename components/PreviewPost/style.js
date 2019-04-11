@@ -22,6 +22,8 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         marginBottom: 20,
+        marginLeft: 10,
+        marginRight: 10,
         overflow: 'hidden',
         width: window.width - 40
     },

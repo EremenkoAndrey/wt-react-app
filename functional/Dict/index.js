@@ -6,7 +6,7 @@ import dictionary from '../../dictionary';
 
 // TODO добавить язык по-умолчанию
 function Dict({
-    code, lang, view, ...prop
+    code, lang, view, spaceBefore, spaceAfter, ...prop
 }) {
     if (!lang) {
         throw new Error('App dictionary: the default language should be set');
@@ -31,17 +31,21 @@ function Dict({
         }
     }
 
-    return <ComponentWrapper {...prop}>{result}</ComponentWrapper>;
+    return <ComponentWrapper {...prop}>{`${spaceBefore ? ' ' : ''}${result}${spaceAfter ? ' ' : ''}`}</ComponentWrapper>;
 }
 
 Dict.propTypes = {
     code: PropTypes.string.isRequired,
     lang: PropTypes.string.isRequired,
-    view: PropTypes.func
+    view: PropTypes.func,
+    spaceBefore: PropTypes.bool,
+    spaceAfter: PropTypes.bool
 };
 
 Dict.defaultProps = {
-    view: null
+    view: null,
+    spaceBefore: false,
+    spaceAfter: false
 };
 
 const mapStateToProps = state => ({

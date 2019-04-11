@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { Button, Icon } from 'native-base';
@@ -15,5 +16,11 @@ function HeaderMenu({ navigation }) {
         </View>
     );
 }
+
+HeaderMenu.propTypes = {
+    navigation: PropTypes.shape({
+        openDrawer: PropTypes.func
+    }).isRequired
+};
 
 export default withNavigation(HeaderMenu);

@@ -30,9 +30,16 @@ function Activity({ activity }) {
 
     return (
         <Card>
-            {activity.data.reason ? <ActivityReason reason={activity.data.reason} /> : null}
+            {activity.data.reason ? (
+                <ActivityReason
+                    reasonData={activity.data.reason.latestReasonsData}
+                    userGenerator={activity.generator}
+                />
+            ) : null}
 
             {renderContent(activity.obj.id, activity.obj.type)}
+
+            <Text>{`Activity id: ${activity.id}`}</Text>
         </Card>
     );
 }
@@ -47,8 +54,10 @@ Activity.propTypes = {
         }).isRequired,
         data: PropTypes.shape({
             reason: PropTypes.shape({
-                rank: PropTypes.string
-            })
+                latestReasonsData: PropTypes.shape({
+                    code: PropTypes.string
+                }).isRequired
+            }).isRequired
         }).isRequired
     }).isRequired
 };

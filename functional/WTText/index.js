@@ -17,7 +17,10 @@ WTText.propTypes = {
         PropTypes.arrayOf(PropTypes.element)
     ]),
     /* eslint react/forbid-prop-types:0 */
-    style: PropTypes.object
+    style: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array
+    ])
 };
 
 WTText.defaultProps = {

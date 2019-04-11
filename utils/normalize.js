@@ -26,10 +26,32 @@ export default function normalize(data) {
         result[type] = result[type] || {};
         const id = `${object.id}`; // приведение id к строке
 
-        // Сохранить тип activity в объекте data
+        /*
+        КОСТЫЛИ ДЛЯ ПРИВЕДЕНИЯ ДАННЫХ С СЕРВЕРА В УПОРЯДОЧЕННЫЙ ВИД
+        */
         if (type === 'activity') {
+            // Сохранить тип activity в объекте data
             object.data.activityType = object.type;
+
+            // На случай если поля reason нет - перестрахуюсь
+            object.data.reason = object.data.reason || {};
+
+            // latestReasonsData может быть пустым массивом(!), в этом случае,
+            // а так же если вдруг поля вообще нет, создаю пустой объект
+            object.data.reason.latestReasonsData = (object.data.reason.latestReasonsData
+                && !Array.isArray(object.data.reason.latestReasonsData)
+                ? object.data.reason.latestReasonsData : {});
+            // Код причины приходит как ключ единственного свойства объекта latestReasonsData
+            const reasonCode = Object.keys(object.data.reason.latestReasonsData)[0];
+            // Если ключ есть (то есть свойство с сервера пришло и это не массив)
+            // сохраняю его в объекте latestReasonsData
+            if (reasonCode) {
+                object.data.reason.latestReasonsData.code = reasonCode;
+            }
         }
+
+        /* ********************************* */
+
         if (result[type][id]) {
             result[type][id] = {
                 ...result[type][id],

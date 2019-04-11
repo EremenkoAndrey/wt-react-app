@@ -24,10 +24,10 @@ export default function getTypeByCode(code) {
         return 'RECENTLY_DISLIKED'; // Недавно дизлайкнули
     case '1005':
     case '1505':
-        return 'NEW_POST'; // Новый пост
+        return 'ACTIONABLE_POST'; // Самая популярная запись
     case '1006':
     case '1506':
-        return 'RECOMMENDATION'; // Рекомендация
+        return 'RECOMMENDATION'; // Рекомендация или по другим данным это Топовый пост пользователя
     case '1007':
     case '1507':
         return 'NEW_AUTHOR_POST'; // Пост нового автора

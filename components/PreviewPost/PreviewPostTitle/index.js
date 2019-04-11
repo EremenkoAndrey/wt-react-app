@@ -24,7 +24,7 @@ function PreviewPostTitle({ userName, userAvatar, date }) {
                         <Text style={styles.name}>{userName}</Text>
                     </View>
                     <View>
-                        <Date style={styles.date} date={date.created} />
+                        <Date style={styles.date}>{date.created}</Date>
                     </View>
                 </View>
             </View>
