@@ -8,10 +8,12 @@ import SignUpScreen from '../screens/SignUpScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import AboutScreen from '../screens/AboutScreen';
 import DrawerScreen from '../screens/DrawerScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 const AppStack = createStackNavigator({
     Home: HomeScreen,
-    DetailPost: DetailPostScreen
+    DetailPost: DetailPostScreen,
+    Settings: SettingsScreen
 });
 
 const AuthStack = createStackNavigator({

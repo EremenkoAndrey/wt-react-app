@@ -1,9 +1,7 @@
+import userInterface from './user-interface';
+import activityReason from './activity-reasons';
+
 export default {
-    PUBLISHED_POST: 'Потому что вы подписаны на',
-    NEW_AUTHOR_POST: 'Пост от новых пользователей',
-    ACTIONABLE_POST: 'Самая популярная информация на рынке',
-    SHARING: 'сохранил запись',
-    RECENTLY_COMMENTED: 'Недавно прокомментировали',
-    VOTE_POST: 'на которого вы подписаны, рекомендует этот пост трейдера',
-    COMMENT_POST: 'на которого вы подписаны, прокомментировал этот пост'
+    ...userInterface,
+    ...activityReason
 };

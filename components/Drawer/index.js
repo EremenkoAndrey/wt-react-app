@@ -1,15 +1,48 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Text } from '../../functional'
+import { withNavigation } from 'react-navigation';
+
+import {
+    List, ListItem, Left, Icon, Body
+} from 'native-base';
+import { Text, Dict } from '../../functional';
 import styles from './style';
 
-export default function Drawer() {
+function Drawer({ navigation }) {
     return (
         <View style={styles.block}>
             <View style={styles.title}>
-                <Text  style={styles.titleText}>Whotades</Text>
+                <Text style={styles.titleText}>Whotades</Text>
             </View>
+            <List>
+                <ListItem icon>
+                    <Left>
+                        <Icon name="ios-people" style={{ color: '#FFFFFF' }} />
+                    </Left>
+                    <Body style={{ borderBottom: 'none' }}>
+                        <Dict
+                            code="FEED"
+                            style={{ color: '#FFFFFF' }}
+                            onPress={() => navigation.navigate('Home')}
+                        />
+                    </Body>
+                </ListItem>
+                <ListItem icon>
+                    <Left>
+                        <Icon name="ios-settings" style={{ color: '#FFFFFF' }} />
+                    </Left>
+                    <Body style={{ borderBottom: 'none' }}>
+                        <Dict
+                            code="SETTINGS"
+                            style={{ color: '#FFFFFF' }}
+                            onPress={() => navigation.navigate('Settings')}
+                        />
+                    </Body>
+                </ListItem>
+            </List>
             <Text>Custom drawer</Text>
         </View>
     );
 }
+
+export default withNavigation(Drawer);

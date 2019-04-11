@@ -7,12 +7,13 @@ export default StyleSheet.create({
         paddingTop: 60,
         paddingBottom: 10,
         paddingLeft: 10,
-        paddingRight: 10,
+        paddingRight: 30,
         backgroundColor: '#111111'
     },
     titleText: {
         color: '#FFFFFF',
         textAlign: 'center',
-        fontSize: 20
+        fontSize: 20,
+        marginBottom: 30
     }
 });
