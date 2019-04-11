@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { withNavigation } from 'react-navigation';
-
 import {
     List, ListItem, Left, Icon, Body
 } from 'native-base';
@@ -44,5 +44,11 @@ function Drawer({ navigation }) {
         </View>
     );
 }
+
+Drawer.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func
+    }).isRequired
+};
 
 export default withNavigation(Drawer);
