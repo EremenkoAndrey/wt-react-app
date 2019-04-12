@@ -14,8 +14,8 @@ export default StyleSheet.create({
         marginRight: 10
     },
     avatar: {
-        height: 80,
-        width: 80,
+        height: 60,
+        width: 60
     },
     infoContainer: {
         flex: 1,

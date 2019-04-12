@@ -27,6 +27,11 @@ export default (state = initialState, action) => {
             loading: false,
             stopLoad: action.payload.ids.length === 0
         };
+    case 'TOGGLE_RECOMMENDATIONS':
+        return {
+            ...state,
+            enableRecommendations: !state.enableRecommendations
+        };
     default:
         return state;
     }

@@ -1,19 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ImageBackground,Image, View } from 'react-native';
+import { Image, View } from 'react-native';
+import { ListItem } from 'native-base';
 import { Text } from '../../../functional';
 import styles from './slyle';
 
 
 function SettingUserInfo({ user }) {
-    const { photo, displayName, email } = user;
+    const { image, displayName, email } = user;
+
     return (
-        <View style={styles.block}>
-            {photo ? (
+        <ListItem style={styles.block}>
+            {image ? (
                 <View style={styles.avatarContainer}>
                     <Image
                         style={styles.avatar}
-                        source={{ uri: photo }}
+                        source={{ uri: `https://${image}` }}
                     />
                 </View>
             ) : null}
@@ -26,9 +29,17 @@ function SettingUserInfo({ user }) {
                     <Text style={styles.email}>{email}</Text>
                 </View>
             </View>
-        </View>
+        </ListItem>
     );
 }
+
+SettingUserInfo.propTypes = {
+    user: PropTypes.shape({
+        displayName: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        photo: PropTypes.string
+    }).isRequired
+};
 
 const mapStateToProps = (state, ownProps) => ({
     user: state.users[ownProps.userId]

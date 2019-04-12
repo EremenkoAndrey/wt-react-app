@@ -60,3 +60,7 @@ export function FETCH_FEED(userId) {
         return dispatch({ type: 'FETCH_FEED' });
     };
 }
+
+export function TOGGLE_RECOMMENDATIONS() {
+    return dispatch => dispatch({ type: 'TOGGLE_RECOMMENDATIONS' });
+}

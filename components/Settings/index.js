@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Content, List, ListItem, Separator
 } from 'native-base';
 import { Text, Dict } from '../../functional';
 import SettingUserInfo from './SettingUserInfo';
+import SettingsFeed from './SettingsFeed';
 
 
 function Settings({ userId }) {
@@ -14,16 +16,13 @@ function Settings({ userId }) {
                     <Dict code="INFORMATION" processText={text => text.toUpperCase()} />
                 </Separator>
 
-                <ListItem>
-                    <SettingUserInfo userId={userId} />
-                </ListItem>
+                <SettingUserInfo userId={userId} />
 
                 <Separator bordered>
                     <Dict code="FEED_SETTINGS" processText={text => text.toUpperCase()} />
                 </Separator>
-                <ListItem>
-                    <Text>Тут переключатель рекомендаций</Text>
-                </ListItem>
+
+                <SettingsFeed />
 
                 <Separator bordered>
                     <Dict code="LANG_SETTINGS" processText={text => text.toUpperCase()} />
@@ -42,5 +41,9 @@ function Settings({ userId }) {
         </Content>
     );
 }
+
+Settings.propTypes = {
+    userId: PropTypes.string.isRequired
+};
 
 export default Settings;
