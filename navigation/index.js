@@ -11,9 +11,9 @@ import DrawerScreen from '../screens/DrawerScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const AppStack = createStackNavigator({
+    Settings: SettingsScreen,
     Home: HomeScreen,
-    DetailPost: DetailPostScreen,
-    Settings: SettingsScreen
+    DetailPost: DetailPostScreen
 });
 
 const AuthStack = createStackNavigator({

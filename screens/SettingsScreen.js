@@ -1,44 +1,53 @@
 import React from 'react';
-import {
-    Content, List, ListItem, Separator
-} from 'native-base';
-import { Text, Dict } from '../functional';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { ActivityIndicator, View } from 'react-native';
+import Settings from '../components/Settings';
+import { FETCH_USER } from '../actions/user';
 
 
-export default class SettingsScreen extends React.Component {
+class SettingsScreen extends React.Component {
+    componentDidMount() {
+        const { userId, getUser } = this.props;
+        if (!userId) {
+            getUser();
+        }
+    }
+
     render() {
+        const { userId } = this.props;
+        if (!userId) {
+            return (
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <ActivityIndicator />
+                </View>
+            );
+        }
         return (
-            <Content>
-                <List>
-                    <Separator bordered>
-                        <Dict code="INFORMATION" processText={text => text.toUpperCase()} />
-                    </Separator>
-                    <ListItem>
-                        <Text>Тут показать карточку юзера</Text>
-                    </ListItem>
-
-                    <Separator bordered>
-                        <Dict code="FEED_SETTINGS" processText={text => text.toUpperCase()} />
-                    </Separator>
-                    <ListItem>
-                        <Text>Тут переключатель рекомендаций</Text>
-                    </ListItem>
-
-                    <Separator bordered>
-                        <Dict code="LANG_SETTINGS" processText={text => text.toUpperCase()} />
-                    </Separator>
-                    <ListItem>
-                        <Text>Тут переключение языка</Text>
-                    </ListItem>
-
-                    <Separator bordered>
-                        <Dict code="ACCOUNT_SETTINGS" processText={text => text.toUpperCase()} />
-                    </Separator>
-                    <ListItem last>
-                        <Text>Тут логаут</Text>
-                    </ListItem>
-                </List>
-            </Content>
+            <Settings userId={userId} />
         );
     }
 }
+
+SettingsScreen.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func
+    }).isRequired,
+    getUser: PropTypes.func.isRequired,
+    userId: PropTypes.string
+};
+
+SettingsScreen.defaultProps = {
+    userId: ''
+};
+
+const mapStateToProps = state => ({
+    userId: state.user.id
+});
+
+
+const mapDispatchToProps = dispatch => ({
+    getUser: () => dispatch(FETCH_USER())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsScreen);
